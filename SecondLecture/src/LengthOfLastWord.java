@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class LengthOfLastWord {
     public static int wordLength(String text) {
         var trimmedText = text.trim();
@@ -8,12 +10,13 @@ public class LengthOfLastWord {
                 break;
             } else {
                 result += 1;
-                i += 1;
                 charPosition -= 1;
             }
         } return result;
     }
     public static void main(String[] args) {
-        System.out.println(LengthOfLastWord.wordLength("   fly me   to   the moon  "));
+        Scanner sc = new Scanner(System.in);
+        String n = sc.nextLine();
+        System.out.println(LengthOfLastWord.wordLength(n));
     }
 }

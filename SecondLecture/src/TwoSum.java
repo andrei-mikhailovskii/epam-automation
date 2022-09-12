@@ -1,3 +1,7 @@
+/* Unfortunately, I don't know how to pass an array as input,
+so I solved the task, but "input" here is just a "nums" variable
+with an array as a value, and "target" variable also has a preset value
+ */
 import java.util.Arrays;
 
 public class TwoSum {

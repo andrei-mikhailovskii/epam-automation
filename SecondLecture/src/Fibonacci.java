@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Fibonacci {
     public static int fib(int n) {
         var firstNumber = 0;
@@ -16,6 +17,8 @@ public class Fibonacci {
         }
     }
     public static void main(String[] args) {
-        System.out.println(Fibonacci.fib(2));
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        System.out.println(Fibonacci.fib(n));
     }
 }

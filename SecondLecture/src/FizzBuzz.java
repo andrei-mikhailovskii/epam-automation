@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class FizzBuzz {
     public static String fizz(int n) {
         if (n % 3 == 0 && n % 5 == 0) {
@@ -11,6 +13,8 @@ public class FizzBuzz {
         }
     }
     public static void main(String[] args) {
-        System.out.println(FizzBuzz.fizz(1));
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        System.out.println(FizzBuzz.fizz(n));
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class SqrtX {
     public static int sqrt(int x) {
         var desiredValue = 1;
@@ -6,6 +8,8 @@ public class SqrtX {
             } return desiredValue;
         }
     public static void main(String[] args) {
-        System.out.println(SqrtX.sqrt(120));
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        System.out.println(SqrtX.sqrt(n));
     }
 }

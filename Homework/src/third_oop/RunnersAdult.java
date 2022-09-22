@@ -52,4 +52,16 @@ public final class RunnersAdult extends Runners implements WinProbability{
         float winCoefficient = (float) (age / getMaxSpeed() / getWeight() * 100);
         return winCoefficient;
     }
+
+    //inner class
+    public class Legs{
+        public void legsMove() {
+            if (isRun()) {
+                System.out.println("The legs of " + getName() + " are moving");
+            } else {
+                System.out.println("The legs of " + getName() + " are not moving");
+            }
+
+        }
+    }
 }

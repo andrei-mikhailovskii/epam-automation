@@ -66,4 +66,5 @@ public class Swimmers extends SportsPeople implements WinProbability{
         float result = (float) (getWeight() * winCoef / WATER_DENSITY * 100);
         return Float.valueOf(df.format(result));
     }
+
 }

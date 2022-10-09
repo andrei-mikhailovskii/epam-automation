@@ -18,7 +18,7 @@ public final class RunnersUnderage extends Runners implements WinProbability {
 
     {
         motto = "Per Aspera Ad Astra!";
-        country = "Undefined counry";
+        country = "Undefined country";
     }
 
     public RunnersUnderage() {
@@ -30,10 +30,16 @@ public final class RunnersUnderage extends Runners implements WinProbability {
         this.getMotto();
     }
 
+    public RunnersUnderage(String name, double weight, int maxSpeed, boolean isRun, String motto) {
+        super(name, weight, maxSpeed, isRun);
+        this.motto = motto;
+        this.country = country;
+    }
+
     public RunnersUnderage(String name, double weight, int maxSpeed, boolean isRun, String motto, String country) {
         super(name, weight, maxSpeed, isRun);
-        this.getMotto();
-        this.getCountry();
+        this.motto = motto;
+        this.country = country;
     }
 
     public static void mottoExplanation() {

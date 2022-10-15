@@ -1,5 +1,7 @@
 package third_oop;
 
+import java.util.Objects;
+
 public abstract class SportsPeople {
     private String name;
 
@@ -43,4 +45,16 @@ public abstract class SportsPeople {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SportsPeople that = (SportsPeople) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }

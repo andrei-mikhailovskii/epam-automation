@@ -1,0 +1,91 @@
+-- Create table 'city'
+CREATE TABLE city (
+	city_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	city_name VARCHAR(50),
+	sitizen INT);
+
+-- Create table 'athlete'
+CREATE TABLE athlete (
+	athlete_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	birth_date_time DATETIME,
+	university_id INT);
+
+-- Create table 'university'
+CREATE TABLE university (
+	university_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	u_name VARCHAR(50),
+	student_quantity INT,
+	city INT);
+
+
+-- Connect tables
+ALTER TABLE dbo.athlete
+ADD FOREIGN KEY (university_id) REFERENCES university (university_id);
+
+ALTER TABLE dbo.university
+ADD FOREIGN KEY (city_id) REFERENCES city (city_id);
+
+
+-- Create insert script to add records to all the 3 tables
+INSERT INTO city (city_name, citizen)
+VALUES ('Berlin', 6144600),
+	('London', 14257962),
+	('Stockholm', 2415139);
+
+INSERT INTO athlete (first_name, last_name, birth_date_time, university_id)
+VALUES ('Richard', 'Schneider', '20040618 10:34:09 AM', 3),
+	('John', 'Barkley', '20000718 04:20:00 AM', 1),
+	('Kurz', 'Braun', '19981018 11:24:08 PM', 2),
+	('Oskar', 'Bjornsson', '19960606 01:19:00 PM', 4),
+	('Anna', 'Karlsson', '20020108 10:01:50 AM', 2),
+	('Richard', 'Smith', '20010619 00:04:09 AM', 3);
+
+INSERT INTO university (u_name, student_quantity, city_id)
+VALUES ('University of Roehampton', 2450, 2),
+	('Staffordshire University', 1349, 2),
+	('University Sports at Freie Universitat Berlin', 1888, 1),
+	('Stockholm University of Sports', 984, 3);
+
+-- Create update script to update a value in a record by specific parameter
+UPDATE city
+SET citizen = 6144610
+WHERE city_id = 1;
+
+-- Create  script to delete records by specific column
+DELETE FROM athlete
+WHERE athlete_id = 6;
+
+-- Create  script to delete all the records in the table
+DELETE FROM athlete;
+
+-- Create  script to get records from a table using between/in/like (in one or in 3 different queries)
+SELECT *
+FROM athlete
+WHERE birth_date_time BETWEEN '2000-01-01 00:00:00' AND '2010-01-01 00:00:00' AND university_id IN (2, 3) AND first_name LIKE 'R%';
+
+-- Create  script to receive records from all the 3 tables (join) ordered by any column
+SELECT *
+FROM athlete a
+JOIN university u ON u.university_id = a.university_id
+JOIN city c ON c.city_id = u.city_id
+ORDER BY first_name;
+
+-- Create  script to receive amount of records in all the tables
+SELECT COUNT(*)
+FROM (SELECT athlete_id
+		FROM athlete
+		UNION ALL
+		SELECT university_id
+		FROM university
+		UNION ALL
+		SELECT city_id
+		FROM city) 
+AS row_amount;
+
+-- Create  script to use any aggregated function
+SELECT city_name, SUM(student_quantity) AS student_total
+FROM city c
+JOIN university u ON u.city_id = c.city_id
+GROUP BY city_name;
